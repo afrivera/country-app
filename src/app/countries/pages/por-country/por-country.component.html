@@ -1,1 +1,50 @@
-<p>por-country works!</p>
+<h2>By Country</h2>
+<hr />
+
+<div class="row">
+    <div class="col">
+        <form (ngSubmit)="search()" autocomplete="off">
+            <input type="text"
+                    name="term" 
+                    placeholder="Search a Country..."
+                    [(ngModel)]="term"
+                    class="form-control"/>
+        </form>
+    </div>
+</div>
+
+<hr />
+<div *ngIf="anError"
+     class="alert alert-danger">
+    {{ term }} does not found
+</div>
+
+<div *ngIf="!anError"
+     class="row">
+    <div class="col">
+        <table *ngIf="countries.length > 0" class="table table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Flag</th>
+                    <th>Name</th>
+                    <th>Population</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let country of countries; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>
+                        <img [src]="country.flags.png" [alt]="country.name.common" class="small-flag">
+                    </td>
+                    <td>{{ country.name.common }}</td>
+                    <td>{{ country.population | number }}</td>
+                    <td>
+                        <a [routerLink]="['/country', country.flag]" >more...</a></td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
