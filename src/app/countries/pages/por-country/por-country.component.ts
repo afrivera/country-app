@@ -15,9 +15,10 @@ export class PorCountryComponent {
   countries: Country[] = [];
   constructor( private countryService: CountryService) { }
 
-  search(){
+  search( country: string ){
     this.anError = false;
-    console.log(this.term);
+    this.term = country;
+    // console.log(this.term);
 
     this.countryService.searchCountry( this.term )
       // .subscribe( (resp) => {
