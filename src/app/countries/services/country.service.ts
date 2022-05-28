@@ -8,7 +8,7 @@ import { Country } from '../interfaces/rest-countries-response.interface';
 })
 export class CountryService {
 
-  private _apiKey: string = 'https://restcountries.com/v3.1';
+  private _apiKey: string = 'https://restcountries.com/v2';
 
   constructor( private http: HttpClient ) { }
 
@@ -18,6 +18,20 @@ export class CountryService {
             // .pipe(
             //   catchError(err => of([]))
             // )
+  }
+
+  searchCapital( capital: string ): Observable <Country []>{
+    const url = `${ this._apiKey}/capital/${ capital }`;
+
+    return this.http.get< Country []>( url );
+  }
+
+  getCountryByCode ( id: string ): Observable <Country>{
+
+    const url = `${ this._apiKey }/alpha/${ id }`;
+
+    return this.http.get<Country>( url );
+
   }
 
 }

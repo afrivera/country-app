@@ -39,5 +39,10 @@ export class PorCountryComponent {
 
   }
 
+  suggestions( suggestion: string ){
+    this.anError = false;
+    
+  }
+
 
 }
