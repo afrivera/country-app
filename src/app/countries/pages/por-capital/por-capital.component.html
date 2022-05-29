@@ -1,16 +1,20 @@
-<h2>By Capital</h2>
-<hr />
-
-<div class="row">
-    <div class="col">
-        <app-country-input
-            (onEnter)="searchBycapital( $event )"
-            placeholder="Search Capital..."
-        ></app-country-input>
+<div class="animate__animated animate__fadeIn animate__faster">
+    <h2>By Capital</h2>
+    <hr />
+    
+    <div class="row">
+        <div class="col">
+            <app-country-input
+                (onEnter)="searchBycapital( $event )"
+                placeholder="Search Capital..."
+            ></app-country-input>
+        </div>
     </div>
+    
+    <hr />
+
 </div>
 
-<hr />
 <div *ngIf="anError"
      class="alert alert-danger">
     {{ term }} does not found

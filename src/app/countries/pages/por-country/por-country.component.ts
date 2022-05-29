@@ -13,6 +13,10 @@ export class PorCountryComponent {
   term: string = '';
   anError: boolean = false;
   countries: Country[] = [];
+  countriesSuggestions: Country[] = [];
+
+  showSuggestion: boolean = false;
+
   constructor( private countryService: CountryService) { }
 
   search( country: string ){
@@ -41,6 +45,17 @@ export class PorCountryComponent {
 
   suggestions( suggestion: string ){
     this.anError = false;
+    this.term = suggestion;
+    this.showSuggestion = true;
+
+    this.countryService.searchCountry( suggestion )
+      .subscribe( countries => this.countriesSuggestions = countries.splice( 0, 5 ) )
+    
+  }
+
+  searchSuggestion( suggestion: string){
+
+    this.search( suggestion );
     
   }
 
